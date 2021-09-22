@@ -22,6 +22,7 @@ namespace POE_Task_One__Final_
 
         }
     }
+    //Base Class for Tiles
     abstract class tile
 
 
@@ -38,6 +39,7 @@ namespace POE_Task_One__Final_
             Tiley = value;
         }
         public int TileType;
+        // Default values class
         public class defaults : tile
         {
             public void Basevalues(int xval, int yval, int tiletype)
@@ -51,7 +53,7 @@ namespace POE_Task_One__Final_
             }
 
         }
-
+        //Obstacles Classs
         public class obstacles : defaults
         {
             public void Places(int xval, int yval, int tiletype)
@@ -62,6 +64,7 @@ namespace POE_Task_One__Final_
 
 
         }
+        // Empty Tiles class.
         public class emptyTiles : defaults
         {
             public void Places(int xval, int yval, int tiletype)
