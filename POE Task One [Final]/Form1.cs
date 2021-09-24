@@ -107,10 +107,12 @@ namespace POE_Task_One__Final_
             }
             private int distanceto(int target)
             {
-                if (target = 0)
+                int distance = 0;
+                if (target == 0)
                 {
-
+                    distance = 1;
                 }
+
                 return distance;
             }
            
