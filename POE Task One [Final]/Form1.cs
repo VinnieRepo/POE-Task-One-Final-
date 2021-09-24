@@ -86,7 +86,7 @@ namespace POE_Task_One__Final_
 
         }
         // Base class doe character
-        abstract class Character : tile
+         abstract class Character : tile
         {
             protected int HP;
             protected int MAXHP;
@@ -158,27 +158,53 @@ namespace POE_Task_One__Final_
                 }
 
             }
+            public abstract Movement returnmove(Movement move = 0);
+            
+
+            
             public abstract override string ToString();
         }
-        abstract class Enemy : Character
+          abstract class Enemy : Character
         {
-            Random rand = new Random();
-            public void EnemyStats(int posy, int posx, int StartHP, string symbol)
+            
+            public void EnemyStats(int posy, int posx, int StartHP, string symbol,int attack)
             {
                 Tilex = posx;
                 Tiley = posy;
                 HP = StartHP;
                 MAXHP = StartHP;
+                Damage = attack;
+
+            }
                 public override string ToString()
             {
-                throw new NotImplementedException();
-
-
+                return "EnemyClassName at " + "[" + Tilex + ',' + Tiley + "]" + "(" + Damage + ")";
             }
 
 
         }
+          class Goblin : Enemy
+        {
+            public void GoblinStats(int x, int y)
+            {
+                Tilex = x;
+                Tiley = y;
+                HP = 10;
+                Damage = 1;
+              
+
+             }
+            public override Movement returnmove(Movement move = Movement.Up)
+            {
+                Random r = new Random();
+                int num = r.Next(4);
+                return (Movement)num;
+            }
         }
+
+        
     }
+    
 }
+
 
