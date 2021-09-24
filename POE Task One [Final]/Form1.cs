@@ -41,10 +41,15 @@ namespace POE_Task_One__Final_
         //Tiletype and Enumerator
 
 
-        public string Tiletype;
-        public string[] Tiletypes = { "Hero", "Enemy", "Gold", "Weapon" };
-            
-        
+        public enum Tiletypes
+        {
+            Hero,
+            Enemy,
+            Gold,
+            Weapon
+        }
+
+
         // Default values class
         public class defaults : tile
         {
@@ -52,7 +57,7 @@ namespace POE_Task_One__Final_
             {
                 Tilex = xval;
                 Tiley = yval;
-                Tiletype = Tiletypes[tiletype];
+                var Tiletype = (Tiletypes)tiletype;
 
 
 
@@ -81,13 +86,14 @@ namespace POE_Task_One__Final_
 
         }
         // Base class doe character
-        abstract class character : tile
+        abstract class Character : tile
         {
             protected int HP;
             protected int MAXHP;
             protected int Damage;
             protected int[,] vision;
-            public string[] Movement = { "Up", "Down", "Left", "Right", "No Movement" };
+            public enum Movement
+            { Up, Down, Left, Right, NoMovement };
 
             //Position of the character.
             protected void position(int x, int y)
@@ -95,30 +101,84 @@ namespace POE_Task_One__Final_
                 Tilex = x;
                 Tiley = y;
             }
-            public bool isdead()
+            public bool isdead(int value)
             {
-                
-                return true;
+                if (value == 1)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
 
             }
             public virtual void attack(int charactertarget)
             {
 
             }
-            private int distanceto(int target)
+            private int distanceto(int target, int charpos)
             {
-                int distance = 0;
-                if (target == 0)
+                int distance;
+                distance = target - charpos;
+                return distance;
+
+            }
+            private bool CheckRange(int target, int charpos)
+            {
+                int distance = distanceto(target, charpos);
+                if (distance <= 1)
                 {
-                    distance = 1;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            public void CharacterMove(int direction, int moveamount)
+            {
+                var whichway = (Movement)direction;
+                switch (whichway)
+                {
+                    case Movement.Up:
+                        Tiley = Tiley - 1;
+                        break;
+                    case Movement.Down:
+                        Tiley = Tiley + 1;
+                        break;
+                    case Movement.Left:
+                        Tilex = Tilex - 1;
+                        break;
+                    case Movement.Right:
+                        Tilex = Tilex + 1;
+                        break;
+
                 }
 
-                return distance;
             }
-           
+            public abstract override string ToString();
+        }
+        abstract class Enemy : Character
+        {
+            Random rand = new Random();
+            public void EnemyStats(int posy, int posx, int StartHP, string symbol)
+            {
+                Tilex = posx;
+                Tiley = posy;
+                HP = StartHP;
+                MAXHP = StartHP;
+                public override string ToString()
+            {
+                throw new NotImplementedException();
 
-            
+
+            }
+
+
         }
         }
     }
 }
+
