@@ -233,7 +233,73 @@ namespace POE_Task_One__Final_
                     + "HP: " + HP + "/" + MAXHP + "\r\n" + "Damage:" + "(" + Damage + ")\r\n" + "[" + Tilex + ',' + Tiley + "]";
             }
         }
-        
+        class Map
+        {
+            private char[,] maptiles;
+            char HeroIcon = '@';
+            private char[,] Enemy;
+            int mapwidth;
+            int mapheight;
+            char[,] enemyArray;
+            Random mappy = new Random();
+            private void create(int mapheight, int mapwidth, int Enemynumb)
+            {
+                int charposy = mappy.Next(1, mapheight);
+                int charposx = mappy.Next(1, mapwidth);
+                maptiles[charposx, charposy] = '@';
+                for (int i = 0; i < Enemynumb; i++) 
+                {
+                    int enemyposy = mappy.Next(1, mapheight);
+                    int enemyposx = mappy.Next(1, mapwidth);
+                    maptiles[enemyposy, enemyposx] = '#';
+
+                }
+                
+            }
+            private void createtiles(Tiletypes type, int gold, int weapon)
+            {
+                for (int i = 0; i < gold; i++) 
+                {
+                    int charposy = mappy.Next(1, mapheight);
+                    int charposx = mappy.Next(1, mapwidth);
+                    if (maptiles[charposx,charposy] == 'v')
+                    {
+                        maptiles[charposx, charposy] = 'G';
+                        
+                    }
+                    else
+                    {
+                        i = i - 1;
+                    }
+                     
+                }
+                for (int i = 0; i < weapon; i++)
+                {
+                    int charposy = mappy.Next(1, mapheight);
+                    int charposx = mappy.Next(1, mapwidth);
+                    if (maptiles[charposx, charposy] == 'v')
+                    {
+                        maptiles[charposx, charposy] = 'W';
+
+                    }
+                    else
+                    {
+                        i = i - 1;
+                    }
+
+                }
+            }
+
+            private void mapmaking(int maxwidth,int minwidth,int minheight,int maxheight,int numberofenemies)
+            {
+                int mapheight = mappy.Next(minheight, maxheight);
+                int mapwidth = mappy.Next(minwidth, maxwidth);
+                maptiles[mapwidth, mapheight] = 'v';
+                enemyArray[mapwidth, mapheight] = 'v';
+
+            }
+
+        }
     }
     
 }
