@@ -85,7 +85,7 @@ namespace POE_Task_One__Final_
 
 
         }
-        // Base class doe character
+        // Base class for characters
          abstract class Character : tile
         {
             protected int HP;
@@ -101,6 +101,7 @@ namespace POE_Task_One__Final_
                 Tilex = x;
                 Tiley = y;
             }
+            // Death check.
             public bool isdead(int value)
             {
                 if (value == 1)
@@ -114,10 +115,12 @@ namespace POE_Task_One__Final_
                 }
 
             }
+            //Attack method to be filled in later.
             public virtual void attack(int charactertarget)
             {
 
             }
+            //Distance Calc
             private int distanceto(int target, int charpos)
             {
                 int distance;
@@ -125,6 +128,7 @@ namespace POE_Task_One__Final_
                 return distance;
 
             }
+            //Range check
             private bool CheckRange(int target, int charpos)
             {
                 int distance = distanceto(target, charpos);
@@ -137,6 +141,7 @@ namespace POE_Task_One__Final_
                     return false;
                 }
             }
+            //movement using enum
             public void CharacterMove(int direction, int moveamount)
             {
                 var whichway = (Movement)direction;
@@ -158,15 +163,17 @@ namespace POE_Task_One__Final_
                 }
 
             }
+            //return move to be overridden
             public abstract Movement returnmove(Movement move = 0);
             
 
-            
+            //Tostring to be overridden.
             public abstract override string ToString();
         }
+        //Enemy Class
           abstract class Enemy : Character
         {
-            
+            //Enemy Constructor
             public void EnemyStats(int posy, int posx, int StartHP, string symbol,int attack)
             {
                 Tilex = posx;
@@ -176,6 +183,7 @@ namespace POE_Task_One__Final_
                 Damage = attack;
 
             }
+            //Overridden String
                 public override string ToString()
             {
                 return "EnemyClassName at " + "[" + Tilex + ',' + Tiley + "]" + "(" + Damage + ")";
@@ -183,8 +191,9 @@ namespace POE_Task_One__Final_
 
 
         }
+        // Goblin Subclass
           class Goblin : Enemy
-        {
+        {    //Constructor
             public void GoblinStats(int x, int y)
             {
                 Tilex = x;
@@ -194,6 +203,7 @@ namespace POE_Task_One__Final_
               
 
              }
+            //random movement
             public override Movement returnmove(Movement move = Movement.Up)
             {
                 Random r = new Random();
@@ -201,7 +211,28 @@ namespace POE_Task_One__Final_
                 return (Movement)num;
             }
         }
-
+        //Hero Subclass
+         class Hero : Character
+        {
+            public void HeroStats(int x, int y, int hp)
+            {
+                position(x, y);
+                HP = hp;
+                Damage = 2;
+              
+            }
+          //Movement
+            public override Movement returnmove(Movement move = Movement.Up)
+            {
+                return (Movement)move;
+            }
+            //Tostring overrider
+            public override string ToString()
+            {
+                return "Player Stats \r\n"
+                    + "HP: " + HP + "/" + MAXHP + "\r\n" + "Damage:" + "(" + Damage + ")\r\n" + "[" + Tilex + ',' + Tiley + "]";
+            }
+        }
         
     }
     
