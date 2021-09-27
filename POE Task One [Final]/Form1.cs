@@ -18,7 +18,7 @@ namespace POE_Task_One__Final_
             InitializeComponent();
         }
 
-        
+
 
         //Base Class for Tiles
         abstract class tile
@@ -233,23 +233,33 @@ namespace POE_Task_One__Final_
             }
             public class Maphelp
             {
-                private char[,] maptiles;
-                char HeroIcon = '@';
-                private char[,] Enemy;
-                int mapwidth;
-                int mapheight;
-                char[,] enemyArray;
-                Random mappy = new Random();
 
-                public void mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
+                public char[,] maptiles { get; set; } 
+            
+             char HeroIcon = '@';
+            private char[,] Enemy { get; set; }
+            int mapwidth { get; set; }
+            int mapheight { get; set; }
+
+            char[,] enemyArray{ get; set; }
+
+            Random mappy = new Random();
+
+                public char[,] mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
                 {
-                    int mapheight = mappy.Next(minheight, maxheight);
-                    int mapwidth = mappy.Next(minwidth, maxwidth);
-                    maptiles[mapwidth, mapheight] = 'v';
-                    enemyArray[mapwidth, mapheight] = 'v';
+                    
+                    this.mapheight = mappy.Next(minheight, maxheight);
+                    this.mapwidth = mappy.Next(minwidth, maxwidth);
+                    
+                    this.maptiles[mapwidth, mapheight] = 'v';
 
+                    
+                    this.create(this.mapheight, this.mapwidth, numberofenemies);
+                    this.createtiles(numberofenemies, numberofenemies);
+
+                    return maptiles;
                 }
-                private void create(int mapheight, int mapwidth, int Enemynumb)
+                public void create(int mapheight, int mapwidth, int Enemynumb)
                 {
                     int charposy = mappy.Next(1, mapheight);
                     int charposx = mappy.Next(1, mapwidth);
@@ -258,12 +268,22 @@ namespace POE_Task_One__Final_
                     {
                         int enemyposy = mappy.Next(1, mapheight);
                         int enemyposx = mappy.Next(1, mapwidth);
-                        maptiles[enemyposy, enemyposx] = '#';
+                        if (maptiles[enemyposx, enemyposy] == 'v')
+                        {
+                            maptiles[enemyposy, enemyposx] = '#';
+                        }
+
+                        else
+                        {
+                            i = i - 1;
+                        }
+
+
 
                     }
 
                 }
-                private void createtiles(Tiletypes type, int gold, int weapon)
+                public void createtiles(int gold, int weapon)
                 {
                     for (int i = 0; i < gold; i++)
                     {
@@ -302,21 +322,42 @@ namespace POE_Task_One__Final_
             }
         }
         private void Form1_Load(object sender, EventArgs e)
-        { Random mappy = new Random();
-            int maxw = mappy.Next(20);
-            int minw = mappy.Next(15);
-            int maxh = mappy.Next(20);
-            int minh = mappy.Next(15);
-            tile.Maphelp make = new tile.Maphelp();
-            make.mapmaking(maxw, minw, maxh, minh, 2);
-        }
-
-        public void StartButton_Click(object sender, EventArgs e) 
         {
             
+            
+            
+
+        }
+
+        public void StartButton_Click(object sender, EventArgs e)
+        {
+            tile.Maphelp make = new tile.Maphelp();
+            Random mappy = new Random();
+            int elements = 2;
+            int minw = mappy.Next(15);
+            int maxw = mappy.Next(minw, 20);
+            int minh = mappy.Next(15);
+            int maxh = mappy.Next(minh, 20);
+
+            
+            make.maptiles = make.mapmaking(maxw, minw, minh, maxh, elements);
+           
+            string mapString = "";
+            for (int i = 0; i < make.maptiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < make.maptiles.GetLength(1); j++)
+                {
+                    mapString += make.maptiles[i, j].ToString();
+                    mapString += " ";
+                }
+
+                mapString += Environment.NewLine;
+            }
+            this.Mapbox.Text = mapString;
+
         }
     }
-    }
+}
     
 
 
