@@ -231,6 +231,7 @@ namespace POE_Task_One__Final_
                         + "HP: " + HP + "/" + MAXHP + "\r\n" + "Damage:" + "(" + Damage + ")\r\n" + "[" + Tilex + ',' + Tiley + "]";
                 }
             }
+            //Attempt at the map creating class, this is where i hit my snag.
             public class Maphelp
             {
 
@@ -240,23 +241,25 @@ namespace POE_Task_One__Final_
             private char[,] Enemy { get; set; }
             public int mapwidth { get; set; }
             public int mapheight { get; set; }
-            public char[,] maptiles { get; set; }
+
+                public char[,] maptiles;
 
                 char[,] enemyArray{ get; set; }
 
             Random mappy = new Random();
 
-                public void mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
+                // i always get an error here, i have tried everything, i must've done it wrong.
+                public char[,] mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
                 {
                     
-                    this.mapheight = mappy.Next(minheight, maxheight);
-                    this.mapwidth = mappy.Next(minwidth, maxwidth);
+                    
+                    char[,] maptiles = new char[mapwidth, mapheight];
                     
                     for (int i = 0; i < mapwidth; i++)
                     {
                         for (int j = 0; j < mapheight; j++)
                         {
-                            this.maptiles[i, j] = 'v';
+                            maptiles[i, j] = 'v';
                         }
 
 
@@ -266,7 +269,7 @@ namespace POE_Task_One__Final_
 
 
                     }
-
+                    return maptiles;
                 }
 
                 public void create(int mapheight, int mapwidth, int Enemynumb)
@@ -349,11 +352,13 @@ namespace POE_Task_One__Final_
             int maxw = mappy.Next(minw, 20);
             int minh = mappy.Next(15);
             int maxh = mappy.Next(minh, 20);
+            make.mapheight = mappy.Next(minh, maxh);
+            make.mapwidth = mappy.Next(minw, maxw);
 
-            
-            make.mapmaking(maxw, minw, minh, maxh, elements);
+
+            make.maptiles = make.mapmaking(maxw, minw, minh, maxh, elements);
             make.create(make.mapheight, make.mapwidth, elements);
-            make.createtiles(elements,elements);
+            make.createtiles(elements, elements);
 
             string mapString = "";
             for (int i = 0; i < make.maptiles.GetLength(0); i++)
@@ -366,7 +371,7 @@ namespace POE_Task_One__Final_
 
                 mapString += Environment.NewLine;
             }
-            this.Mapbox.Text = mapString;
+            this.MapLabel.Text = mapString;
 
         }
     }

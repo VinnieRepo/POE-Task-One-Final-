@@ -32,10 +32,10 @@ namespace POE_Task_One__Final_
             this.LeftButton = new System.Windows.Forms.Button();
             this.RightButton = new System.Windows.Forms.Button();
             this.DownButton = new System.Windows.Forms.Button();
-            this.Mapbox = new System.Windows.Forms.TextBox();
             this.CharacterLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
+            this.MapLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LeftButton
@@ -65,13 +65,6 @@ namespace POE_Task_One__Final_
             this.DownButton.Text = "Down";
             this.DownButton.UseVisualStyleBackColor = true;
             // 
-            // Mapbox
-            // 
-            this.Mapbox.Location = new System.Drawing.Point(41, 12);
-            this.Mapbox.Name = "Mapbox";
-            this.Mapbox.Size = new System.Drawing.Size(178, 27);
-            this.Mapbox.TabIndex = 4;
-            // 
             // CharacterLabel
             // 
             this.CharacterLabel.AutoSize = true;
@@ -100,15 +93,24 @@ namespace POE_Task_One__Final_
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
+            // MapLabel
+            // 
+            this.MapLabel.AutoSize = true;
+            this.MapLabel.Location = new System.Drawing.Point(41, 42);
+            this.MapLabel.Name = "MapLabel";
+            this.MapLabel.Size = new System.Drawing.Size(50, 20);
+            this.MapLabel.TabIndex = 8;
+            this.MapLabel.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MapLabel);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CharacterLabel);
-            this.Controls.Add(this.Mapbox);
             this.Controls.Add(this.DownButton);
             this.Controls.Add(this.RightButton);
             this.Controls.Add(this.LeftButton);
@@ -126,10 +128,10 @@ namespace POE_Task_One__Final_
         private System.Windows.Forms.Button LeftButton;
         private System.Windows.Forms.Button RightButton;
         private System.Windows.Forms.Button DownButton;
-        private System.Windows.Forms.TextBox Mapbox;
         private System.Windows.Forms.Label CharacterLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Label MapLabel;
     }
 }
 
