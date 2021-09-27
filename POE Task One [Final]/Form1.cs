@@ -234,35 +234,45 @@ namespace POE_Task_One__Final_
             public class Maphelp
             {
 
-                public char[,] maptiles { get; set; } 
+                
             
              char HeroIcon = '@';
             private char[,] Enemy { get; set; }
-            int mapwidth { get; set; }
-            int mapheight { get; set; }
+            public int mapwidth { get; set; }
+            public int mapheight { get; set; }
+            public char[,] maptiles { get; set; }
 
-            char[,] enemyArray{ get; set; }
+                char[,] enemyArray{ get; set; }
 
             Random mappy = new Random();
 
-                public char[,] mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
+                public void mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
                 {
                     
                     this.mapheight = mappy.Next(minheight, maxheight);
                     this.mapwidth = mappy.Next(minwidth, maxwidth);
                     
-                    this.maptiles[mapwidth, mapheight] = 'v';
+                    for (int i = 0; i < mapwidth; i++)
+                    {
+                        for (int j = 0; j < mapheight; j++)
+                        {
+                            this.maptiles[i, j] = 'v';
+                        }
 
-                    
-                    this.create(this.mapheight, this.mapwidth, numberofenemies);
-                    this.createtiles(numberofenemies, numberofenemies);
 
-                    return maptiles;
+
+
+
+
+
+                    }
+
                 }
+
                 public void create(int mapheight, int mapwidth, int Enemynumb)
                 {
-                    int charposy = mappy.Next(1, mapheight);
-                    int charposx = mappy.Next(1, mapwidth);
+                    int charposy = mappy.Next(0, mapheight);
+                    int charposx = mappy.Next(0, mapwidth);
                     maptiles[charposx, charposy] = '@';
                     for (int i = 0; i < Enemynumb; i++)
                     {
@@ -284,6 +294,7 @@ namespace POE_Task_One__Final_
 
                 }
                 public void createtiles(int gold, int weapon)
+
                 {
                     for (int i = 0; i < gold; i++)
                     {
@@ -340,8 +351,10 @@ namespace POE_Task_One__Final_
             int maxh = mappy.Next(minh, 20);
 
             
-            make.maptiles = make.mapmaking(maxw, minw, minh, maxh, elements);
-           
+            make.mapmaking(maxw, minw, minh, maxh, elements);
+            make.create(make.mapheight, make.mapwidth, elements);
+            make.createtiles(elements,elements);
+
             string mapString = "";
             for (int i = 0; i < make.maptiles.GetLength(0); i++)
             {
