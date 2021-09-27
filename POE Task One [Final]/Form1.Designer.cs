@@ -69,7 +69,7 @@ namespace POE_Task_One__Final_
             // CharacterLabel
             // 
             this.CharacterLabel.AutoSize = true;
-            this.CharacterLabel.Location = new System.Drawing.Point(612, 13);
+            this.CharacterLabel.Location = new System.Drawing.Point(362, 85);
             this.CharacterLabel.Name = "CharacterLabel";
             this.CharacterLabel.Size = new System.Drawing.Size(50, 20);
             this.CharacterLabel.TabIndex = 5;
@@ -78,7 +78,7 @@ namespace POE_Task_One__Final_
             // EnemyLabel
             // 
             this.EnemyLabel.AutoSize = true;
-            this.EnemyLabel.Location = new System.Drawing.Point(612, 207);
+            this.EnemyLabel.Location = new System.Drawing.Point(362, 195);
             this.EnemyLabel.Name = "EnemyLabel";
             this.EnemyLabel.Size = new System.Drawing.Size(50, 20);
             this.EnemyLabel.TabIndex = 6;

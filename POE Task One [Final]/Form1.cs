@@ -248,7 +248,7 @@ namespace POE_Task_One__Final_
 
             Random mappy = new Random();
 
-                // i always get an error here, i have tried everything, i must've done it wrong.
+                // Mapfiller
                 public char[,] mapmaking(int maxwidth, int minwidth, int minheight, int maxheight, int numberofenemies)
                 {
                     
@@ -271,7 +271,7 @@ namespace POE_Task_One__Final_
                     }
                     return maptiles;
                 }
-
+                //Map Populator
                 public void create(int mapheight, int mapwidth, int Enemynumb)
                 {
                     int charposy = mappy.Next(0, mapheight);
@@ -281,12 +281,12 @@ namespace POE_Task_One__Final_
                     {
                         for (int j = 0;j < Enemynumb; j++)
                         {
-                            int enemyposy = mappy.Next(mapheight);
-                            int enemyposx = mappy.Next(mapwidth);
+                            int enemyposy = mappy.Next(0,mapheight);
+                            int enemyposx = mappy.Next(0,mapwidth);
                             if (maptiles[enemyposx, enemyposy] == 'v')
                             {
                                 maptiles[enemyposy, enemyposx] = '#';
-                            }
+                            } //Sometimes it will throw an error out here, i have no idea why, just rerun until it works.
 
                             else
                             {
@@ -300,6 +300,7 @@ namespace POE_Task_One__Final_
                     }
 
                 }
+                //gold and weapons
                 public void createtiles(int gold, int weapon)
 
                 {
@@ -321,38 +322,29 @@ namespace POE_Task_One__Final_
 
                         }
 
-                        // string mapString = "";
-                        //for (int i = 0; i < make.maptiles.GetLength(0); i++)
-                        //{
-                        // for (int j = 0; j < make.maptiles.GetLength(1); j++)
-                        // {
-                        //      mapString += make.maptiles[i, j].ToString();
-                        //      mapString += " ";
-                        //  }
-
-                        //   mapString += Environment.NewLine;
-                        //}
-
+                     
                     }
                     for (int i = 0; i < weapon; i++)
                     {
-                        int charposy = mappy.Next(1, mapheight);
-                        int charposx = mappy.Next(1, mapwidth);
-                        if (maptiles[charposx, charposy] == 'v')
+                        for (int j = 0;j < weapon; j++)
                         {
-                            maptiles[charposx, charposy] = 'W';
+                            int charposy = mappy.Next(1, mapheight);
+                            int charposx = mappy.Next(1, mapwidth);
+                            if (maptiles[charposx, charposy] == 'v')
+                            {
+                                maptiles[charposx, charposy] = 'W';
 
+                            }
+                            else
+                            {
+                                i = i - 1;
+                            }
                         }
-                        else
-                        {
-                            i = i - 1;
-                        }
+                        
 
                     }
                 }
-                class gameEngine
-                {
-                }
+               
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -362,7 +354,7 @@ namespace POE_Task_One__Final_
             
 
         }
-
+        //Instead of having GameEngine, my code runs off the startbutton.
         public void StartButton_Click(object sender, EventArgs e)
         {
             tile.Maphelp make = new tile.Maphelp();

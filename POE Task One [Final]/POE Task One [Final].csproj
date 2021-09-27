@@ -7,4 +7,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="C:\Users\rampa\Downloads\Gade POE Task 1 Final.cs" Link="Gade POE Task 1 Final.cs" />
+  </ItemGroup>
+
 </Project>
