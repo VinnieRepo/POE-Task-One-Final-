@@ -33,9 +33,10 @@ namespace POE_Task_One__Final_
             this.RightButton = new System.Windows.Forms.Button();
             this.DownButton = new System.Windows.Forms.Button();
             this.CharacterLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.EnemyLabel = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
             this.MapLabel = new System.Windows.Forms.Label();
+            this.UpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LeftButton
@@ -74,14 +75,14 @@ namespace POE_Task_One__Final_
             this.CharacterLabel.TabIndex = 5;
             this.CharacterLabel.Text = "label1";
             // 
-            // label2
+            // EnemyLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(612, 207);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "label2";
+            this.EnemyLabel.AutoSize = true;
+            this.EnemyLabel.Location = new System.Drawing.Point(612, 207);
+            this.EnemyLabel.Name = "EnemyLabel";
+            this.EnemyLabel.Size = new System.Drawing.Size(50, 20);
+            this.EnemyLabel.TabIndex = 6;
+            this.EnemyLabel.Text = "label2";
             // 
             // StartButton
             // 
@@ -102,14 +103,25 @@ namespace POE_Task_One__Final_
             this.MapLabel.TabIndex = 8;
             this.MapLabel.Text = "label1";
             // 
+            // UpButton
+            // 
+            this.UpButton.Location = new System.Drawing.Point(590, 304);
+            this.UpButton.Name = "UpButton";
+            this.UpButton.Size = new System.Drawing.Size(94, 29);
+            this.UpButton.TabIndex = 9;
+            this.UpButton.Text = "Up";
+            this.UpButton.UseVisualStyleBackColor = true;
+            this.UpButton.Click += new System.EventHandler(this.UpButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.UpButton);
             this.Controls.Add(this.MapLabel);
             this.Controls.Add(this.StartButton);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.EnemyLabel);
             this.Controls.Add(this.CharacterLabel);
             this.Controls.Add(this.DownButton);
             this.Controls.Add(this.RightButton);
@@ -132,6 +144,8 @@ namespace POE_Task_One__Final_
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label MapLabel;
+        private System.Windows.Forms.Label EnemyLabel;
+        private System.Windows.Forms.Button UpButton;
     }
 }
 

@@ -84,7 +84,7 @@ namespace POE_Task_One__Final_
 
             }
             // Base class for characters
-            abstract class Character : tile
+            public abstract class Character : tile
             {
                 protected int HP;
                 protected int MAXHP;
@@ -169,7 +169,7 @@ namespace POE_Task_One__Final_
                 public abstract override string ToString();
             }
             //Enemy Class
-            abstract class Enemy : Character
+            public abstract class Enemy : Character
             {
                 //Enemy Constructor
                 public void EnemyStats(int posy, int posx, int StartHP, string symbol, int attack)
@@ -190,7 +190,7 @@ namespace POE_Task_One__Final_
 
             }
             // Goblin Subclass
-            class Goblin : Enemy
+            public class Goblin : Enemy
             {    //Constructor
                 public void GoblinStats(int x, int y)
                 {
@@ -210,7 +210,7 @@ namespace POE_Task_One__Final_
                 }
             }
             //Hero Subclass
-            class Hero : Character
+            public class Hero : Character
             {
                 public void HeroStats(int x, int y, int hp)
                 {
@@ -279,16 +279,20 @@ namespace POE_Task_One__Final_
                     maptiles[charposx, charposy] = '@';
                     for (int i = 0; i < Enemynumb; i++)
                     {
-                        int enemyposy = mappy.Next(1, mapheight);
-                        int enemyposx = mappy.Next(1, mapwidth);
-                        if (maptiles[enemyposx, enemyposy] == 'v')
+                        for (int j = 0;j < Enemynumb; j++)
                         {
-                            maptiles[enemyposy, enemyposx] = '#';
-                        }
+                            int enemyposy = mappy.Next(mapheight);
+                            int enemyposx = mappy.Next(mapwidth);
+                            if (maptiles[enemyposx, enemyposy] == 'v')
+                            {
+                                maptiles[enemyposy, enemyposx] = '#';
+                            }
 
-                        else
-                        {
-                            i = i - 1;
+                            else
+                            {
+                                i = i - 1;
+                            }
+
                         }
 
 
@@ -301,17 +305,33 @@ namespace POE_Task_One__Final_
                 {
                     for (int i = 0; i < gold; i++)
                     {
-                        int charposy = mappy.Next(1, mapheight);
-                        int charposx = mappy.Next(1, mapwidth);
-                        if (maptiles[charposx, charposy] == 'v')
+                        for (int j = 0; j < gold; j++)
                         {
-                            maptiles[charposx, charposy] = 'G';
+                            int charposy = mappy.Next(1, mapheight);
+                            int charposx = mappy.Next(1, mapwidth);
+                            if (maptiles[charposx, charposy] == 'v')
+                            {
+                                maptiles[charposx, charposy] = 'G';
+
+                            }
+                            else
+                            {
+                                i = i - 1;
+                            }
 
                         }
-                        else
-                        {
-                            i = i - 1;
-                        }
+
+                        // string mapString = "";
+                        //for (int i = 0; i < make.maptiles.GetLength(0); i++)
+                        //{
+                        // for (int j = 0; j < make.maptiles.GetLength(1); j++)
+                        // {
+                        //      mapString += make.maptiles[i, j].ToString();
+                        //      mapString += " ";
+                        //  }
+
+                        //   mapString += Environment.NewLine;
+                        //}
 
                     }
                     for (int i = 0; i < weapon; i++)
@@ -372,7 +392,17 @@ namespace POE_Task_One__Final_
                 mapString += Environment.NewLine;
             }
             this.MapLabel.Text = mapString;
+            tile.Character.Hero argumentpass = new tile.Character.Hero();
+            tile.Character.Goblin argumentpass2 = new tile.Character.Goblin();
+            this.CharacterLabel.Text = argumentpass.ToString();
+            this.EnemyLabel.Text = argumentpass2.ToString();
+             
 
+        }
+
+        private void UpButton_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
